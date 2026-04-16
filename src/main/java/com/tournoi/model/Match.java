@@ -8,7 +8,12 @@ public class Match {
     public String getNomEquipeExt() { return nomEquipeExt; } public void setNomEquipeExt(String nomEquipeExt) { this.nomEquipeExt = nomEquipeExt; }
     public String getStatut() { return statut; } public void setStatut(String statut) { this.statut = statut; }
     private int tourNumero;
+ // Ajoute ceci avec les autres variables privées
+    private String dateMatch;
 
+    // Ajoute ceci à la fin du fichier avec les autres getters/setters
+    public String getDateMatch() { return dateMatch; }
+    public void setDateMatch(String dateMatch) { this.dateMatch = dateMatch; }
     public int getTourNumero() { return tourNumero; }
     public void setTourNumero(int tourNumero) { this.tourNumero = tourNumero; }
 }

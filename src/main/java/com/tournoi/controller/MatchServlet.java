@@ -33,7 +33,11 @@ public class MatchServlet extends HttpServlet {
             List<Equipe> equipes = equipeDAO.listerParTournoi(idTournoi);
             Tournoi t = tournoiDAO.getTournoiById(idTournoi);
             if (equipes.size() >= 2) {
-                if ("Elimination".equals(t.getTypeTournoi())) { matchDAO.genererKnockout(equipes); } else { matchDAO.genererChampionnat(equipes); }
+                if ("Elimination".equals(t.getTypeTournoi())) { 
+                    matchDAO.genererKnockout(equipes, t); // On ajoute ', t'
+                } else { 
+                    matchDAO.genererChampionnat(equipes, t); // On ajoute ', t'
+                }
             }
         } else if ("saisirScore".equals(action)) {
             int idMatch = Integer.parseInt(request.getParameter("idMatch"));

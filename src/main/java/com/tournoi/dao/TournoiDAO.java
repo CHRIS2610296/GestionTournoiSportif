@@ -14,9 +14,24 @@ public class TournoiDAO {
     }
     public Tournoi getTournoiById(int id) {
         Tournoi t = null;
-        try (Connection conn = DatabaseConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement("SELECT * FROM tournoi WHERE id=?")) {
-            stmt.setInt(1, id); ResultSet rs = stmt.executeQuery();
-            if (rs.next()) { t = new Tournoi(); t.setId(id); t.setNom(rs.getString("nom")); t.setTypeTournoi(rs.getString("type_tournoi")); }
-        } catch (Exception e) { e.printStackTrace(); } return t;
+        try (Connection conn = DatabaseConnection.getConnection(); 
+             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM tournoi WHERE id=?")) {
+            stmt.setInt(1, id); 
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) { 
+                t = new Tournoi(); 
+                t.setId(id); 
+                t.setNom(rs.getString("nom")); 
+                t.setTypeTournoi(rs.getString("type_tournoi")); 
+                t.setSport(rs.getString("sport"));
+                t.setLieu(rs.getString("lieu"));
+                // LES DEUX LIGNES MANQUANTES SONT ICI :
+                t.setDateDebut(rs.getString("date_debut")); 
+                t.setDateFin(rs.getString("date_fin")); 
+            }
+        } catch (Exception e) { 
+            e.printStackTrace(); 
+        } 
+        return t;
     }
 }
